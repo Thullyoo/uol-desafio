@@ -22,8 +22,12 @@ public class Jogador {
     @Setter
     private String telefone;
 
+    @Getter
+    @Setter
     private GrupoCodinome grupoCodinome;
 
+    @Getter
+    @Setter
     private String codinome;
 
 }
