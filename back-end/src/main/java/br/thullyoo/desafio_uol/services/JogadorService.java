@@ -1,6 +1,7 @@
 package br.thullyoo.desafio_uol.services;
 
 import br.thullyoo.desafio_uol.DTO.JogadorDTO;
+import br.thullyoo.desafio_uol.DTO.JogadorResponseDTO;
 import br.thullyoo.desafio_uol.model.Jogador;
 import br.thullyoo.desafio_uol.repository.CodinomeRepository;
 import br.thullyoo.desafio_uol.repository.JogadorRepository;
@@ -19,11 +20,18 @@ public class JogadorService {
     @Autowired
     private CodinomeService codinomeService;
 
-    public Jogador salvar(JogadorDTO jogadorDTO) throws JsonProcessingException {
+    public Jogador salvar(JogadorDTO jogadorDTO) throws Exception {
         List <String> codinomesJaUtilizados = jogadorRepository.resgatarCodinomesUtilizados(jogadorDTO.grupoCodinome());
         String codinome = codinomeService.gerarCodinome(jogadorDTO.grupoCodinome(), codinomesJaUtilizados);
         Jogador jogador = jogadorDTO.toJogador(codinome);
         return jogadorRepository.salvar(jogador);
     }
 
+    public List<JogadorResponseDTO> resgatar() throws Exception {
+        List<JogadorResponseDTO> jogadores = jogadorRepository.resgatarJogadores();
+        if (jogadores.isEmpty()){
+            throw new Exception("Nenhum jogador registrado");
+        }
+        return jogadores;
+    }
 }

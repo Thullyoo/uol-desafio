@@ -1,5 +1,6 @@
 package br.thullyoo.desafio_uol.repository;
 
+import br.thullyoo.desafio_uol.DTO.JogadorResponseDTO;
 import br.thullyoo.desafio_uol.model.GrupoCodinome;
 import br.thullyoo.desafio_uol.model.Jogador;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,14 @@ public class JogadorRepository {
 
 
         return codinomes;
+    }
+
+    public List<JogadorResponseDTO> resgatarJogadores(){
+        List<JogadorResponseDTO> jogadores = jdbcClient.sql("""
+                SELECT * FROM JOGADOR
+                """)
+                .query(JogadorResponseDTO.class)
+                .list();
+        return jogadores;
     }
 }
