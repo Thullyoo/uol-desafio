@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>Jogadores Cadastrados</h1>
+  <table>
+    <tr>
+      <th>Nome</th>
+      <th>E-mail</th>
+      <th>Telefone</th>
+      <th>Codinome</th>
+      <th>grupoCodinome</th>
+    </tr>
+    @for (jogador of jogadores; track $index) {
+      <tr>
+        <td>{{jogador.nome}}</td>
+        <td>{{jogador.email}}</td>
+        <td>{{jogador.telefone}}</td>
+        <td>{{jogador.codinome}}</td>
+        <td>{{jogador.grupoCodinome}}</td>
+      </tr>
+    }
+  </table>
+</div>
